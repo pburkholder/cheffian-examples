@@ -36,4 +36,4 @@ ANSWERS: There are four ways to feed data into a Chef cookbook recipe, each with
 
 \*: I'm using 'duty' here since 'role' is an overloaded term, and this example has nothing to do with Chef `roles`
 
-EXAMPLE: This cookbook is a 
+EXAMPLE: This cookbook demonstrates storing the data in libraries/data.json, and accessed with a helper function. This results in a clean interface to the data, readable recipes, and a single point of change for these data.
