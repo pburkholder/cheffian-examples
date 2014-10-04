@@ -1,8 +1,10 @@
 # Encoding: utf-8
 
 require 'rspec/core/rake_task'
+
+task default: %w[spec]
+
 desc 'Run ChefSpec unit tests'
 RSpec::Core::RakeTask.new(:spec) do |t, _args|
   t.rspec_opts = 'test/unit/spec'
 end
-

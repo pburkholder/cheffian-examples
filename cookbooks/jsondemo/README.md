@@ -5,11 +5,11 @@ A customer needs to build a templated configuration file from a `global_config` 
 ```javascript
 {
   "appserver": {
-    "foo": "all",
+    "what": "app",
     "bar": "none"
   },
   "webserver": {
-    "foo": "none",
+    "what": "web",
     "bar": "all"
   }
 }
