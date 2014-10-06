@@ -1,18 +1,10 @@
 require 'json'
 
-def current_path
-  File.dirname(__FILE__)
+def json_path(json_file='JSON')
+  File.join(File.dirname(__FILE__), json_file)
 end
 
-def duty_of(duty='appserver')
-  duties=JSON.parse(File.read(File.join(current_path, 'JSON')))
+def fetch_data(duty='appserver')
+  duties=JSON.parse(File.read(json_path))
   return duties[duty]
-end
-
-def expander(hash)
-  s = StringIO.new()
-  hash.each(k,v) do
-    s.puts("#{k}: {v}")
-  end
-  s
 end

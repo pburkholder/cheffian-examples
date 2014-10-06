@@ -1,9 +1,4 @@
-
-data={
-  'what' => 'app'
-}
-
 template '/etc/foo' do
   source 'foo.erb'
-  variables data: data
+  variables data: fetch_data(node['duty'])
 end
