@@ -6,6 +6,6 @@ template '/etc/foo' do
 #  variables  local_data: local_stuff
   variables  ({
     local_data: local_stuff,
-    afsdlj: "asdlfj"
+    apps: my_apps
   })
 end
