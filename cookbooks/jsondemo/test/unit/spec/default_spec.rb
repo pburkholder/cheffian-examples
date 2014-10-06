@@ -10,7 +10,7 @@ describe 'jsondemo::default' do
 
   it 'should create file with key:value' do
     expect(chef_run).to render_file('/etc/foo')
-      .with_content(/regex works too.+/)
+      .with_content('what:app')
   end
 
 end

@@ -1,4 +1,4 @@
 
 file '/etc/foo' do
-  content json_config()
+  content duty_of().to_s
 end
