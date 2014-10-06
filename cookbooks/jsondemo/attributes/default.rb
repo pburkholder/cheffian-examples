@@ -1,0 +1,1 @@
+default['duty']='appserver'

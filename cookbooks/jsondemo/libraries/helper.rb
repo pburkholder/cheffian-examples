@@ -1,6 +1,6 @@
 require 'json'
 
-def json_path(json_file='JSON')
+def json_path(json_file='data.json')
   File.join(File.dirname(__FILE__), json_file)
 end
 
