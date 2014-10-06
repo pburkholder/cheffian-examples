@@ -1,4 +1,9 @@
 
-file '/etc/foo' do
-  content duty_of().to_s
+data={
+  'what' => 'app'
+}
+
+template '/etc/foo' do
+  source 'foo.erb'
+  variables data: data
 end
