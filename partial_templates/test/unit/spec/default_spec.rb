@@ -13,17 +13,12 @@ describe 'partial_templates::default' do
         .with_content('global_content')
     end
 
-    it 'should create file with local1 section' do
-      expect(chef_run).to render_file('/etc/foo')
-        .with_content('local static content')
-    end
-
-    it 'should create file with local2 dynamic section' do
+    it 'should create file with local1 dynamic section' do
       expect(chef_run).to render_file('/etc/foo')
         .with_content('local variable content')
     end
 
-    it 'should creat file with variable dynamic section' do
+    it 'should create file with node attribute section' do
       expect(chef_run).to render_file('/etc/foo')
         .with_content('[appserver_only]')
     end

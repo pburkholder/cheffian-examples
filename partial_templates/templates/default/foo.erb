@@ -1,10 +1,11 @@
 [global]
-so_say: we_all
+config: global_content
 
-<% render "local1.erb" %>
+
+<%= render "local1.erb" %>
 
 <% if @apps -%>
   <% @app.each do |app| -%>
-    <% render app %>
+    <% render "#{app}.erb" %>
   <% end -%>
 <% end -%>
