@@ -1,6 +1,6 @@
 QUESTION: Where does one store a static data structure, as in the following use case?
 
-A customer needs to build a templated configuration file from a `global_config` YAML or JSON data source where particular node 'duties' were associated with sets of configuration values, such as the following:
+A customer needs to build a templated configuration file from a YAML or JSON data source where particular node 'duties' were associated with sets of configuration values, such as the following:
 
 ```javascript
 {
