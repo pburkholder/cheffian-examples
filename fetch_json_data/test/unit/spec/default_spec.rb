@@ -1,7 +1,7 @@
 # Encoding: utf-8
 require_relative 'spec_helper'
 
-describe 'jsondemo::default' do
+describe 'fetch_json_data::default' do
   context 'when using defaults' do
     let (:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
 
