@@ -1,0 +1,10 @@
+[global]
+so_say: we_all
+
+<% render "local1.erb" %>
+
+<% if @apps -%>
+  <% @app.each do |app| -%>
+    <% render app %>
+  <% end -%>
+<% end -%>
