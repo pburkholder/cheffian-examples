@@ -34,3 +34,9 @@ ANSWERS: There are four ways to feed data into a Chef cookbook recipe, each with
 1. From an Ohai plugin on the node: If the data were being pulled from a database or other external source, this would also be a feasible option.
 
 EXAMPLE: This cookbook demonstrates storing the data in libraries/data.json, and accessed with a helper function. This results in a clean interface to the data, readable recipes, and a single point of change for these data.
+
+DISCUSSION: This solution is appropriate for the following conditions:
+* The maintainers of the cookbook and the data.json are the same person or team
+* The maintainers want the same audit and version history of data.json that they do for the cookbook as a whole
+* The data.json is not part of the interface to the cookbook, so it doesn't need to be an attribute
+* The cookbook could be extended to accept a data_source attribute, and use that as the name of data source in 'libraries'
