@@ -13,7 +13,7 @@ end
 
 desc 'Run ChefSpec unit tests'
 RSpec::Core::RakeTask.new(:spec => :bundle) do |t|
-  t.rspec_opts = 'test/unit'
+  t.rspec_opts = '--format documentation test/unit'
 end
 
 task default: :spec
