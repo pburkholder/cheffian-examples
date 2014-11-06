@@ -2,6 +2,9 @@
 
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
+require 'foodcritic'
+
+task default: [:cop, :foodcritic, :spec]
 
 desc 'Run ChefSpec unit tests'
 RSpec::Core::RakeTask.new(:spec) do |t|
@@ -11,4 +14,6 @@ end
 desc 'Run RuboCop'
 RuboCop::RakeTask.new(:cop)
 
-task default: [:cop, :spec]
+task default: [:foodcritic]
+desc 'Run FoodCritic for Chef lint'
+FoodCritic::Rake::LintTask.new

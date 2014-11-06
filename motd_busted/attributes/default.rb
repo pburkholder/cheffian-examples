@@ -1,2 +1,2 @@
-default['motd']['path'] = "/etc/before"
-default['motd']['message'] = "Property of Awesome Appliance, Inc\n"
+default['motd']['path'] = "/etc/motd"
+default['motd']['message'] = "Property of Acme, Inc\n"
