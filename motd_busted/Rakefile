@@ -1,19 +1,18 @@
 # Encoding: utf-8
 
-require 'rspec/core/rake_task'
-require 'rubocop/rake_task'
-require 'foodcritic'
-
 task default: [:cop, :foodcritic, :spec]
 
 desc 'Run ChefSpec unit tests'
-RSpec::Core::RakeTask.new(:spec) do |t|
-  t.rspec_opts = '--format documentation test/unit'
+task :spec do
+  sh('rspec', '--format','documentation','test/unit')
 end
 
 desc 'Run RuboCop'
-RuboCop::RakeTask.new(:cop)
+task :cop do
+	sh('rubocop')
+end
 
-task default: [:foodcritic]
-desc 'Run FoodCritic for Chef lint'
-FoodCritic::Rake::LintTask.new
+desc 'Run Foodcritic'
+task :foodcritic do
+	sh('foodcritic', '.')
+end
