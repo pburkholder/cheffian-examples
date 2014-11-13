@@ -16,11 +16,11 @@ end
 
 desc 'Run Foodcritic'
 task :foodcritic do
-  sh('foodcritic', '.')
+  sh('foodcritic', '-f', 'any', '.')
 end
 
 desc 'Run KitchenCI'
 task :kitchen do
-  sh('kitchen', 'converge', 'centos6')
-  sh('kitchen', 'verify', 'centos6')
+  sh('kitchen', 'converge', 'centos-6')
+  sh('kitchen', 'verify', 'centos-6')
 end
