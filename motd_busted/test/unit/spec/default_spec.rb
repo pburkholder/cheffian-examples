@@ -6,6 +6,6 @@ describe 'motd::default' do
 
   it 'should create MOTD' do
     expect(chef_run).to render_file('/etc/motd')
-      .with_content('Awesome Appliance')
+      .with_content('Property of Awesome Appliance')
   end
 end

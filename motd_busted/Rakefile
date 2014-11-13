@@ -2,17 +2,25 @@
 
 task default: [:cop, :foodcritic, :spec]
 
+task all: [:default, :kitchen]
+
 desc 'Run ChefSpec unit tests'
 task :spec do
-  sh('rspec', '--format','documentation','test/unit')
+  sh('rspec', '--format', 'documentation', 'test/unit')
 end
 
 desc 'Run RuboCop'
 task :cop do
-	sh('rubocop')
+  sh('rubocop')
 end
 
 desc 'Run Foodcritic'
 task :foodcritic do
-	sh('foodcritic', '.')
+  sh('foodcritic', '.')
+end
+
+desc 'Run KitchenCI'
+task :kitchen do
+  sh('kitchen', 'converge', 'centos6')
+  sh('kitchen', 'verify', 'centos6')
 end
