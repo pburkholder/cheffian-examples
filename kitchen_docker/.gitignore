@@ -1,0 +1,8 @@
+.bundle
+*.lock
+vendor/
+.kitchen
+.kitchen.docker/
+.kitchen.vagrant/
+# .kitchen.yml is a symlink now...
+.kitchen.yml

@@ -1,0 +1,59 @@
+# Encoding: utf-8
+
+task default: [:cop, :foodcritic, :spec]
+
+task all: [:default, :kitchen]
+
+desc 'Run ChefSpec unit tests'
+task :spec do
+  sh('rspec', '--format', 'documentation', 'test/unit')
+end
+
+desc 'Run RuboCop'
+task :cop do
+  sh('rubocop')
+end
+
+desc 'Run Foodcritic'
+task :foodcritic do
+  sh('foodcritic', '-f', 'any', '.')
+end
+
+desc 'Run KitchenCI'
+task :kitchen do
+  sh('kitchen', 'converge', 'centos-6')
+  sh('kitchen', 'verify', 'centos-6')
+end
+
+def do_symlink(kitchendir, ymlsrc)
+  dirlink='.kitchen'
+  ymllink='.kitchen.yml'
+
+  # Prep the .kitchen/ storage directory
+  raise ArgumentError, "#{dirlink} is a directory; not symlinking" \
+    if (File.directory? dirlink and !File.symlink? dirlink)
+  Dir.mkdir kitchendir unless File.directory? kitchendir
+  File.unlink dirlink if File.symlink? dirlink
+  File.symlink kitchendir, dirlink
+
+  # Link .kitchen.yml
+  raise ArgumentError, "#{ymllink} already exists as a file; not symlinking" \
+    if (File.file? ymllink and !File.symlink? ymllink)
+  File.unlink ymllink if File.symlink? ymllink
+  File.symlink ymlsrc, ymllink
+end
+
+desc 'Symlink for Docker'
+task :docker do
+  do_symlink '.kitchen.docker', '.kitchen.docker.yml'
+end
+
+desc 'Symlink for Vagrant'
+task :vagrant do
+  do_symlink '.kitchen.vagrant', '.kitchen.vagrant.yml'
+end
+
+desc 'Report if using vagrant or docker'
+task :which do
+  sh('ls -latd .kitchen.yml .kitchen')
+end
