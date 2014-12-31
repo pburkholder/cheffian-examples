@@ -70,37 +70,3 @@ Now run `chef-client`
 
 
     chef-client -c .chef/client.rb -r aws_ebs -z
-
-
-CLEANUP:
-
-    chef-client -c .chef/cliene.rb -r aws_ebs::destroy -z
-    knife node delete aws_ebs -c .chef/client.rb -z
-
-
-
-============
-
-Converging 3 resources
-* chef_gem[aws-sdk] action install[2014-12-31T18:38:05+00:00] INFO: Processing chef_gem[aws-sdk] action install (aws::default line 19)
-(up to date)
-Recipe: aws_ebs::ebs
-* aws_ebs_volume[db_ebs_volume] action create[2014-12-31T18:38:05+00:00] INFO: Processing aws_ebs_volume[db_ebs_volume] action create (aws_ebs::ebs line 9)
-[2014-12-31T18:38:24+00:00] INFO: Volume vol-6371f072 is available
-
-- create a volume with id= size=50 availability_zone= and update the node data with created volume's id
-* aws_ebs_volume[db_ebs_volume] action attach[2014-12-31T18:38:25+00:00] INFO: Processing aws_ebs_volume[db_ebs_volume] action attach (aws_ebs::ebs line 9)
-[2014-12-31T18:38:50+00:00] INFO: Volume vol-6371f072 is attached to i-41a6d84b
-
-- attach the volume with aws_id=vol-6371f072 id=i-41a6d84b device=/dev/sdi and update the node data with created volume's id
-* mount[/mnt/db] action mount[2014-12-31T18:38:50+00:00] INFO: Processing mount[/mnt/db] action mount (aws_ebs::ebs line 17)
-
-
-================================================================================
-Error executing action `mount` on resource 'mount[/mnt/db]'
-================================================================================
-
-Chef::Exceptions::Mount
------------------------
-Device dev/sdi does not exist
-===============
