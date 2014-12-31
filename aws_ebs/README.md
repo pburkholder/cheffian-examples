@@ -1,80 +1,27 @@
 # aws_ebs
 
-TODO: Enter the cookbook description here.
+Enter the cookbook description here.
+
+AWS CREDENTIALS:
+
+~/.aws/config:
+
+    [default]
+    region = us-west-2
+    aws_access_key_id = KEY
+    aws_secret_access_key = Secret
+    endpoint = https://ec2.us-west-2.amazonaws.com
+
+SSH keys
+
+- AWS needs your public key stored with them, try `aws ec2 create-key-pair` or `aws ec2 import-key-pair`
+- Store the public key material in ~/.chef/keys
+- Use the keypair name in `recipes/default.rb` and `recipes/destroy.rb`
 
 HOW-TO:
 
-Create the following trust policy and save it in a text file named `ec2-role-trust-policy.json`.
-
-    cat <<END >ec2-role-trust-policy.json
-    {
-      "Version": "2012-10-17",
-      "Statement": [
-      {
-        "Effect": "Allow",
-        "Principal": { "Service": "ec2.amazonaws.com"},
-        "Action": "sts:AssumeRole"
-      }
-      ]
-    }
-    END
-
-
-Create the s3access role. You'll specify the trust policy you created.
-
-    aws iam create-role --role-name volumeRole --assume-role-policy-document file://ec2-role-trust-policy.json
-
-    { {snip... }}
-
-
-
-Create an access policy and save it in a text file named volume_policy.json:
-
-    cat << END > volume_policy.json
-    {
-      "Version": "2012-10-17",
-      "Statement": [
-      {
-        "Action": [
-        "ec2:AttachVolume",
-        "ec2:CreateVolume",
-        "ec2:ModifyVolumeAttribute",
-        "ec2:DescribeVolumeAttribute",
-        "ec2:DescribeVolumeStatus",
-        "ec2:DescribeVolumes",
-        "ec2:DetachVolume",
-        "ec2:EnableVolumeIO"
-        ],
-        "Resource": [
-        "*"
-        ],
-        "Effect": "Allow"
-      }
-      ]
-    }
-    END
-
-Implement:
-
-    aws iam put-role-policy --role-name volumeRole --policy-name  volumePolicy --policy-document file://volume_policy.json
-
-Create an instance profile named volumeProfile.
-
-    aws iam create-instance-profile --instance-profile-name volumeProfile
-
-Add the volumeRole role to the volumeProfile instance profile.
-
-    aws iam add-role-to-instance-profile --instance-profile-name volumeProfile --role-name volumeRole
-
-Set default profile
-
-    export AWS_PROFILE=volumeProfile
-
-Now run `chef-client`
-
-
+    knife node list -z -c .chef/client.rb
     chef-client -c .chef/client.rb -r aws_ebs -z
-
 
 CLEANUP:
 
