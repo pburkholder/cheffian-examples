@@ -13,4 +13,5 @@ with_machine_options :bootstrap_options => {
 
 machine 'aws_ebs' do
   recipe 'aws_ebs::ebs'
+  recipe 'aws_ebs::ssd'
 end
