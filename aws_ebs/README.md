@@ -31,5 +31,5 @@ HOW-TO:
 
 CLEANUP:
 
-    chef-client -c .chef/cliene.rb -r aws_ebs::destroy -z
+    chef-client -c .chef/client.rb -r aws_ebs::destroy -z
     knife node delete aws_ebs -c .chef/client.rb -z
