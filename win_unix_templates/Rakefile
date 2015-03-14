@@ -1,0 +1,19 @@
+# Encoding: utf-8
+
+require 'rspec/core/rake_task'
+require 'bundler'
+
+desc 'Install bundle pre-requisties'
+task :bundle do |t|
+  Bundler.with_clean_env do
+    sh "bundle install --path vendor/bundle"
+  end
+end
+
+
+desc 'Run ChefSpec unit tests'
+RSpec::Core::RakeTask.new(:spec => :bundle) do |t|
+  t.rspec_opts = '--format documentation test/unit'
+end
+
+task default: :spec

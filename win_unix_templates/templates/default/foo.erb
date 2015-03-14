@@ -1,0 +1,12 @@
+[global]
+config: global_content
+
+# 1. local1.erb uses the variable @local_stuff from recipes/default.rb
+<%= render "local1.erb" %>
+
+# 2. use the appserver.erb template only when in @apps list
+<% if @apps -%>
+  <% @apps.each do |app| -%>
+    <%= render "#{app}.erb" %>
+  <% end -%>
+<% end -%>

@@ -62,5 +62,17 @@ with_data_center data_center do
   end
 end
 
+exit
+
+# Issues:
+# - Didn't use the image_id I'd specified
+# - vpc drivers don't handle internet gateways or route_tables, so needed:
+#    aws ec2 create-internet-gateway
+# note your InternetGatewayId
+#    aws ec2 attach-internet-gateway --internet-gateway-id igw-a26abec7 --vpc-id vpc-4457fe21
+# should be true
+#    aws ec2 describe-route-tables
+# note the RouteTableId assigned to your VpcId
+#    aws ec2 create-route --route-table-id rtb-c77fc8a2 --destination "0.0.0.0/0" --gateway-id igw-a26abec7
 
 #
