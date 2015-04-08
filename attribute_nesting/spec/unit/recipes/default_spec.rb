@@ -15,17 +15,13 @@ describe 'attribute::default' do
       runner.converge(described_recipe)
     end
 
-    let(:merged_hash) do
-      {"key"=>"my_value", "key1"=>"value1", "key2"=>"value2"}
-    end
-
     it 'converges successfully' do
       chef_run # This should not raise an error
     end
 
     it 'exhibits the merged hash' do
       expect(chef_run).to render_file('/etc/config').
-        with_content(merged_hash.values.join(":"))
+        with_content('my_value:value1:value2:value3:my_value4')
     end
   end
 end
