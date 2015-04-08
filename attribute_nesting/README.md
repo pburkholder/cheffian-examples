@@ -56,4 +56,6 @@ my_config.merge!(
 default['blah']['config'] = my_config
 ```
 
+## Demonstration
 
+Checkout this cookbook, cd into the cookbook, then run `rspec --format d` (assuming you have ChefDK installed)
