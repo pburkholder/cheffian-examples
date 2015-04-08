@@ -25,3 +25,21 @@ describe 'attribute_nesting::default' do
     end
   end
 end
+describe 'blah::default' do
+
+  context 'When all attributes are default, on an unspecified platform' do
+    let(:chef_run) do
+      runner = ChefSpec::ServerRunner.new
+      runner.converge(described_recipe)
+    end
+
+    it 'converges successfully' do
+      chef_run # This should not raise an error
+    end
+
+    it 'exhibits the merged hash' do
+      expect(chef_run).to render_file('/etc/blah').
+        with_content('value:value1:value2:value3')
+    end
+  end
+end
