@@ -1,4 +1,4 @@
-# attribute
+# attribute_nesting
 
 This cookbook demonstrates how to use `to\_hash` and `merge` to updated nested
 Mashes in the Chef object.
@@ -46,7 +46,7 @@ The Node objects passed around for Chef attributes look like hashes but are actu
 ```
 my_config_hash = default['blah']['config'].to_hash
 
-my_config.merge(
+my_config.merge!(
   {
     'key' => 'my_value',
     'key4' => 'my_value4'

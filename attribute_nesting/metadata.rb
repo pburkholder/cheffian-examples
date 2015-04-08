@@ -1,4 +1,4 @@
-name             'attribute'
+name             'attribute_nesting'
 maintainer       'The Authors'
 maintainer_email 'you@example.com'
 license          'all_rights'

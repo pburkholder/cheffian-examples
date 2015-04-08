@@ -6,7 +6,7 @@
 
 require 'spec_helper'
 
-describe 'attribute::default' do
+describe 'attribute_nesting::default' do
 
   context 'When all attributes are default, on an unspecified platform' do
 
