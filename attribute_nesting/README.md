@@ -44,7 +44,7 @@ default['blah']['config']['key2'] = value2
 The Node objects passed around for Chef attributes look like hashes but are actually 'ImmutableMashes', which are designed to be updated only through direct manipulation via Chef calls. To update a nested structure within the node object, use the `to\_hash` method to extact the portion you want, merge in your attribute changes, then update the node object, as in the following code from `attributes/default.rb`
 
 ```
-my_config_hash = default['blah']['config'].to_hash
+my_config = default['blah']['config'].to_hash
 
 my_config.merge!(
   {
