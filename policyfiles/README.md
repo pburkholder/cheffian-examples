@@ -37,3 +37,7 @@ However, the myapp recipe configure index.html via a template to render the buil
      <li>Version: 0.1.0</li>
      <li>Build: 1001</li>
    </ul>
+
+The 'base' recipe is unchanged in each build, but the 'myapp' recipe has an attribute that is incremented with each build.
+
+### First lets get the simplest case down
