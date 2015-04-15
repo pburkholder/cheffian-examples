@@ -4,7 +4,10 @@
 #
 # Copyright (c) 2015 The Authors, All Rights Reserved.
 
-package [ 'curl' 'lsof']
+%w(curl lsof).each do |p|
+  package p
+end
+
 
 include_recipe 'apt::default' # ensure apt-update runs
 

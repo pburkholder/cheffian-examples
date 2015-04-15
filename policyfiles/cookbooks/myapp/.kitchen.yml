@@ -13,4 +13,5 @@ suites:
   - name: default
     run_list:
       - recipe[base::default]
+      - recipe[myapp::default]
     attributes:
