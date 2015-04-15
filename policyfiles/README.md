@@ -15,6 +15,14 @@ No recipe for this yet. DNS is chefserver.cheffian.com. To do:
 - create a user and an organization with that user associated (`-a`):
     sudo chef-server-ctl user-create pdb Peter Burkholder pburkholder@chef.io TestPassword -f pdb.pem
     sudo chef-server-ctl org-create pdb_org pdb_org -f pdb_org.pem -a pdb
+- make `current_dir/.chef/knife.rb` and copy the above .pem file into the `.chef` directory:
+    cd .chef
+    scp ubuntu@chefserver.cheffian.com:pdb.pem .
+    scp ubuntu@chefserver.cheffian.com:pdb_org.pem .
+- fetch the ssl cert:
+    knife ssl fetch https://chefserver.cheffian.com
+- test with `knife user list`:
+
 
 ## Scenario
 
