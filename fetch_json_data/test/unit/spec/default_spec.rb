@@ -3,7 +3,8 @@ require_relative 'spec_helper'
 
 describe 'fetch_json_data::default' do
   context 'when using defaults' do
-    let (:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
+    #let (:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
+    let (:chef_run) { ChefSpec::ServerRunner.new.converge(described_recipe) }
 
     it 'should do converge' do
       expect(chef_run).to be
