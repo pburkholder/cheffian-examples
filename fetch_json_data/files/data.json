@@ -1,0 +1,10 @@
+{
+  "appserver": {
+    "what": "app",
+    "bar": "none"
+  },
+  "webserver": {
+    "what": "web",
+    "bar": "all"
+  }
+}
