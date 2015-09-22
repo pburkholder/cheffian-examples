@@ -10,10 +10,20 @@
 cleartext = 'cleartext'
 simple_edb = Chef::EncryptedDataBagItem.load("simple", "edb", "secret")
 
+
+nested_edb = Chef::EncryptedDataBagItem.load("nested", "edb",
+    Chef::EncryptedDataBagItem.load_secret("#{data_bag_item("keys", "admin")['keyfile']}"))
+
+#simple_edb = data_bag_item("simple", "edb", "secret")
+
 file '/etc/cleartext' do
   content "Welcome to secret: #{cleartext}"
 end
 
 file '/etc/simple_edb' do
   content "Welcome to secret: #{simple_edb}"
+end
+
+file '/etc/nested_edb' do
+  content "Welcome to secret: #{nested_edb}"
 end

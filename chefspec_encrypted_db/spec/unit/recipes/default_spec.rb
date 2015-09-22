@@ -14,8 +14,15 @@ describe 'chefspec_encrypted_db::default' do
     end
 
     before do
+      stub_data_bag_item('keys', 'admin').and_return({ 'keyfile'=>'foo' })
       allow(Chef::EncryptedDataBagItem).to receive(:load)
         .with('simple', 'edb', 'secret').and_return('simple_edb')
+
+      allow(Chef::EncryptedDataBagItem).to receive(:load_secret)
+        .and_return('loaded_secret')
+
+      allow(Chef::EncryptedDataBagItem).to receive(:load)
+          .with('nested', 'edb', 'loaded_secret').and_return('nested_edb')
     end
 
     it 'converges successfully' do
@@ -30,6 +37,11 @@ describe 'chefspec_encrypted_db::default' do
     it 'makes /etc/simple_edb' do
       expect(chef_run).to render_file('/etc/simple_edb').
         with_content('Welcome to secret: simple_edb')
+    end
+
+    it 'makes /etc/nested_edb' do
+      expect(chef_run).to render_file('/etc/nested_edb').
+        with_content('Welcome to secret: nested_edb')
     end
   end
 end
