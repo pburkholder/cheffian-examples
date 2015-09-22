@@ -1,0 +1,7 @@
+name 'chefspec_encrypted_db'
+maintainer 'The Authors'
+maintainer_email 'you@example.com'
+license 'all_rights'
+description 'Installs/Configures chefspec_encrypted_db'
+long_description 'Installs/Configures chefspec_encrypted_db'
+version '0.1.0'
